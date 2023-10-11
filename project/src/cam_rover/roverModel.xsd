@@ -1,0 +1,225 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="sdf">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="model">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:string" name="static"/>
+              <xs:element name="link" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                  <xs:choice maxOccurs="unbounded" minOccurs="0">
+                    <xs:element type="xs:string" name="pose"/>
+                    <xs:element name="collision">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="geometry">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="box" minOccurs="0">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element type="xs:string" name="size"/>
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="cylinder" minOccurs="0">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element type="xs:float" name="radius"/>
+                                      <xs:element type="xs:float" name="length"/>
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                        <xs:attribute type="xs:string" name="name" use="optional"/>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="visual">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:string" name="pose" minOccurs="0"/>
+                          <xs:element name="geometry">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="box" minOccurs="0">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element type="xs:string" name="size"/>
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="sphere" minOccurs="0">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element type="xs:float" name="radius"/>
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="cylinder" minOccurs="0">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element type="xs:float" name="radius"/>
+                                      <xs:element type="xs:float" name="length"/>
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="surface" minOccurs="0">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="friction">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element name="ode">
+                                        <xs:complexType>
+                                          <xs:sequence>
+                                            <xs:element type="xs:byte" name="mu"/>
+                                            <xs:element type="xs:byte" name="mu2"/>
+                                            <xs:element type="xs:float" name="slip1"/>
+                                            <xs:element type="xs:float" name="slip2"/>
+                                          </xs:sequence>
+                                        </xs:complexType>
+                                      </xs:element>
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="material" minOccurs="0">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element type="xs:string" name="ambient"/>
+                                <xs:element type="xs:string" name="diffuse"/>
+                                <xs:element type="xs:string" name="specular"/>
+                                <xs:element type="xs:string" name="emissive"/>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                        <xs:attribute type="xs:string" name="name" use="optional"/>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="sensor">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:string" name="always_on"/>
+                          <xs:element type="xs:string" name="visualize"/>
+                          <xs:element type="xs:byte" name="update_rate"/>
+                          <xs:element name="camera">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element type="xs:float" name="horizontal_fov"/>
+                                <xs:element name="image">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element type="xs:short" name="width"/>
+                                      <xs:element type="xs:short" name="height"/>
+                                      <xs:element type="xs:string" name="format"/>
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="clip">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element type="xs:float" name="near"/>
+                                      <xs:element type="xs:byte" name="far"/>
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="noise">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element type="xs:string" name="type"/>
+                                      <xs:element type="xs:float" name="mean">
+                                        <xs:annotation>
+                                          <xs:documentation>Noise is sampled independently per pixel on each frame.
+             That pixel's noise value is added to each of its color
+              channels, which at that point lie in the range [0,1].</xs:documentation>
+                                        </xs:annotation>
+                                      </xs:element>
+                                      <xs:element type="xs:float" name="stddev"/>
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                              <xs:attribute type="xs:string" name="name"/>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="plugin">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element type="xs:float" name="baseline"/>
+                                <xs:element type="xs:string" name="alwaysOn"/>
+                                <xs:element type="xs:float" name="updateRate">
+                                  <xs:annotation>
+                                    <xs:documentation>Keep this zero, update_rate in the parent &lt;sensor> tag
+            will control the frame rate.</xs:documentation>
+                                  </xs:annotation>
+                                </xs:element>
+                                <xs:element type="xs:string" name="cameraName"/>
+                                <xs:element type="xs:string" name="imageTopicName"/>
+                                <xs:element type="xs:string" name="cameraInfoTopicName"/>
+                                <xs:element type="xs:string" name="depthImageTopicName"/>
+                                <xs:element type="xs:string" name="depthImageCameraInfoTopicName"/>
+                                <xs:element type="xs:string" name="pointCloudTopicName"/>
+                                <xs:element type="xs:string" name="frameName"/>
+                                <xs:element type="xs:float" name="pointCloudCutoff"/>
+                                <xs:element type="xs:float" name="pointCloudCutoffMax"/>
+                                <xs:element type="xs:byte" name="distortionK1"/>
+                                <xs:element type="xs:byte" name="distortionK2"/>
+                                <xs:element type="xs:byte" name="distortionK3"/>
+                                <xs:element type="xs:byte" name="distortionT1"/>
+                                <xs:element type="xs:byte" name="distortionT2"/>
+                                <xs:element type="xs:byte" name="CxPrime"/>
+                                <xs:element type="xs:byte" name="Cx"/>
+                                <xs:element type="xs:byte" name="Cy"/>
+                                <xs:element type="xs:byte" name="focalLength"/>
+                                <xs:element type="xs:byte" name="hackBaseline"/>
+                              </xs:sequence>
+                              <xs:attribute type="xs:string" name="name"/>
+                              <xs:attribute type="xs:string" name="filename"/>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                        <xs:attribute type="xs:string" name="name"/>
+                        <xs:attribute type="xs:string" name="type"/>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:choice>
+                  <xs:attribute type="xs:string" name="name" use="optional"/>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="joint" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:string" name="pose"/>
+                    <xs:element type="xs:string" name="child"/>
+                    <xs:element type="xs:string" name="parent"/>
+                    <xs:element name="axis">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:string" name="xyz"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute type="xs:string" name="type" use="optional"/>
+                  <xs:attribute type="xs:string" name="name" use="optional"/>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute type="xs:string" name="name"/>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute type="xs:float" name="version"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

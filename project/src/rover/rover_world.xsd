@@ -1,0 +1,224 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="sdf">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="world">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="include" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:string" name="uri"/>
+                    <xs:element type="xs:string" name="pose" minOccurs="0"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="model">
+                <xs:complexType>
+                  <xs:choice maxOccurs="unbounded" minOccurs="0">
+                    <xs:element type="xs:string" name="pose"/>
+                    <xs:element name="link" maxOccurs="unbounded" minOccurs="0">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:string" name="pose"/>
+                          <xs:element name="inertial">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element type="xs:float" name="mass"/>
+                                <xs:element name="inertia">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element type="xs:float" name="ixx"/>
+                                      <xs:element type="xs:byte" name="ixy"/>
+                                      <xs:element type="xs:byte" name="ixz"/>
+                                      <xs:element type="xs:float" name="iyy"/>
+                                      <xs:element type="xs:byte" name="iyz"/>
+                                      <xs:element type="xs:float" name="izz"/>
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="visual">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="geometry">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element name="box" minOccurs="0">
+                                        <xs:complexType>
+                                          <xs:sequence>
+                                            <xs:element type="xs:string" name="size"/>
+                                          </xs:sequence>
+                                        </xs:complexType>
+                                      </xs:element>
+                                      <xs:element name="sphere" minOccurs="0">
+                                        <xs:complexType>
+                                          <xs:sequence>
+                                            <xs:element type="xs:float" name="radius"/>
+                                          </xs:sequence>
+                                        </xs:complexType>
+                                      </xs:element>
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                              <xs:attribute type="xs:string" name="name" use="optional"/>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="collision">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="geometry">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element name="box" minOccurs="0">
+                                        <xs:complexType>
+                                          <xs:sequence>
+                                            <xs:element type="xs:string" name="size"/>
+                                          </xs:sequence>
+                                        </xs:complexType>
+                                      </xs:element>
+                                      <xs:element name="sphere" minOccurs="0">
+                                        <xs:complexType>
+                                          <xs:sequence>
+                                            <xs:element type="xs:float" name="radius"/>
+                                          </xs:sequence>
+                                        </xs:complexType>
+                                      </xs:element>
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="surface" minOccurs="0">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element name="friction">
+                                        <xs:complexType>
+                                          <xs:sequence>
+                                            <xs:element name="ode">
+                                              <xs:complexType>
+                                                <xs:sequence>
+                                                  <xs:element type="xs:byte" name="mu"/>
+                                                  <xs:element type="xs:byte" name="mu2"/>
+                                                  <xs:element type="xs:byte" name="slip1"/>
+                                                  <xs:element type="xs:byte" name="slip2"/>
+                                                </xs:sequence>
+                                              </xs:complexType>
+                                            </xs:element>
+                                          </xs:sequence>
+                                        </xs:complexType>
+                                      </xs:element>
+                                      <xs:element name="contact">
+                                        <xs:complexType>
+                                          <xs:sequence>
+                                            <xs:element name="ode">
+                                              <xs:complexType>
+                                                <xs:sequence>
+                                                  <xs:element type="xs:byte" name="soft_cfm"/>
+                                                  <xs:element type="xs:float" name="soft_erp"/>
+                                                  <xs:element type="xs:float" name="kp"/>
+                                                  <xs:element type="xs:byte" name="kd"/>
+                                                  <xs:element type="xs:float" name="max_vel"/>
+                                                  <xs:element type="xs:float" name="min_depth"/>
+                                                </xs:sequence>
+                                              </xs:complexType>
+                                            </xs:element>
+                                          </xs:sequence>
+                                        </xs:complexType>
+                                      </xs:element>
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                              <xs:attribute type="xs:string" name="name" use="optional"/>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                        <xs:attribute type="xs:string" name="name" use="optional"/>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="joint" maxOccurs="unbounded" minOccurs="0">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:string" name="parent"/>
+                          <xs:element type="xs:string" name="child"/>
+                          <xs:element name="axis" minOccurs="0">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element type="xs:string" name="xyz"/>
+                                <xs:element name="limit">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element type="xs:float" name="lower"/>
+                                      <xs:element type="xs:float" name="upper"/>
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                        <xs:attribute type="xs:string" name="name" use="optional"/>
+                        <xs:attribute type="xs:string" name="type" use="optional"/>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="plugin">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="ros" minOccurs="0">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element type="xs:string" name="namespace"/>
+                                <xs:element type="xs:string" name="remapping" maxOccurs="unbounded" minOccurs="0"/>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element type="xs:string" name="left_joint" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation>wheels</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element type="xs:string" name="right_joint" minOccurs="0"/>
+                          <xs:element type="xs:float" name="wheel_separation" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation>kinematics</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element type="xs:float" name="wheel_diameter" minOccurs="0"/>
+                          <xs:element type="xs:byte" name="max_wheel_torque" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation>limits</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element type="xs:float" name="max_wheel_acceleration" minOccurs="0"/>
+                          <xs:element type="xs:string" name="publish_odom" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation>output</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element type="xs:string" name="publish_odom_tf" minOccurs="0"/>
+                          <xs:element type="xs:string" name="publish_wheel_tf" minOccurs="0"/>
+                          <xs:element type="xs:string" name="odometry_frame" minOccurs="0"/>
+                          <xs:element type="xs:string" name="robot_base_frame" minOccurs="0"/>
+                          <xs:element type="xs:string" name="child" minOccurs="0"/>
+                          <xs:element type="xs:string" name="parent" minOccurs="0"/>
+                        </xs:sequence>
+                        <xs:attribute type="xs:string" name="name" use="optional"/>
+                        <xs:attribute type="xs:string" name="filename" use="optional"/>
+                        <xs:attribute type="xs:string" name="type" use="optional"/>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:choice>
+                  <xs:attribute type="xs:string" name="name"/>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute type="xs:string" name="name"/>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute type="xs:float" name="version"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

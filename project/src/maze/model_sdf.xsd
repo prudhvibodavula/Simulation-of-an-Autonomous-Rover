@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+          <!-- XML Schema Generated from XML Document on Fri Apr 15 2022 03:03:52 GMT-0700 (Pacific Daylight Time) -->
+          <!-- with XmlGrid.net Free Online Service http://xmlgrid.net -->
+       <xs:element name="sdf">
+              <xs:complexType>
+                     <xs:sequence>
+                            <xs:element name="model">
+                                   <xs:complexType>
+                                          <xs:sequence>
+                                                 <xs:element name="pose" type="xs:string"></xs:element>
+                                                 <xs:element name="link" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                               <xs:sequence>
+                                                                      <xs:element name="collision">
+                                                                             <xs:complexType>
+                                                                                    <xs:sequence>
+                                                                                           <xs:element name="geometry">
+                                                                                                  <xs:complexType>
+                                                                                                         <xs:sequence>
+                                                                                                                <xs:element name="box">
+                                                                                                                       <xs:complexType>
+                                                                                                                              <xs:sequence>
+                                                                                                                                     <xs:element name="size" type="xs:string"></xs:element>
+                                                                                                                                 </xs:sequence>
+                                                                                                                          </xs:complexType>
+                                                                                                                   </xs:element>
+                                                                                                            </xs:sequence>
+                                                                                                     </xs:complexType>
+                                                                                              </xs:element>
+                                                                                           <xs:element name="pose" type="xs:string"></xs:element>
+                                                                                       </xs:sequence>
+                                                                                    <xs:attribute name="name" type="xs:string"></xs:attribute>
+                                                                                </xs:complexType>
+                                                                         </xs:element>
+                                                                      <xs:element name="visual">
+                                                                             <xs:complexType>
+                                                                                    <xs:sequence>
+                                                                                           <xs:element name="pose" type="xs:string"></xs:element>
+                                                                                           <xs:element name="geometry">
+                                                                                                  <xs:complexType>
+                                                                                                         <xs:sequence>
+                                                                                                                <xs:element name="box">
+                                                                                                                       <xs:complexType>
+                                                                                                                              <xs:sequence>
+                                                                                                                                     <xs:element name="size" type="xs:string"></xs:element>
+                                                                                                                                 </xs:sequence>
+                                                                                                                          </xs:complexType>
+                                                                                                                   </xs:element>
+                                                                                                            </xs:sequence>
+                                                                                                     </xs:complexType>
+                                                                                              </xs:element>
+                                                                                           <xs:element name="material">
+                                                                                                  <xs:complexType>
+                                                                                                         <xs:sequence>
+                                                                                                                <xs:element name="script">
+                                                                                                                       <xs:complexType>
+                                                                                                                              <xs:sequence>
+                                                                                                                                     <xs:element name="uri" type="xs:string"></xs:element>
+                                                                                                                                     <xs:element name="name" type="xs:string"></xs:element>
+                                                                                                                                 </xs:sequence>
+                                                                                                                          </xs:complexType>
+                                                                                                                   </xs:element>
+                                                                                                                <xs:element name="ambient" type="xs:string"></xs:element>
+                                                                                                            </xs:sequence>
+                                                                                                     </xs:complexType>
+                                                                                              </xs:element>
+                                                                                           <xs:element name="meta">
+                                                                                                  <xs:complexType>
+                                                                                                         <xs:sequence>
+                                                                                                                <xs:element name="layer" type="xs:int"></xs:element>
+                                                                                                            </xs:sequence>
+                                                                                                     </xs:complexType>
+                                                                                              </xs:element>
+                                                                                       </xs:sequence>
+                                                                                    <xs:attribute name="name" type="xs:string"></xs:attribute>
+                                                                                </xs:complexType>
+                                                                         </xs:element>
+                                                                      <xs:element name="pose" type="xs:string"></xs:element>
+                                                                  </xs:sequence>
+                                                               <xs:attribute name="name" type="xs:string"></xs:attribute>
+                                                           </xs:complexType>
+                                                    </xs:element>
+                                                 <xs:element name="static" type="xs:int"></xs:element>
+                                             </xs:sequence>
+                                          <xs:attribute name="name" type="xs:string"></xs:attribute>
+                                      </xs:complexType>
+                               </xs:element>
+                        </xs:sequence>
+                     <xs:attribute name="version" type="xs:double"></xs:attribute>
+                 </xs:complexType>
+          </xs:element>
+   </xs:schema>
